@@ -6,19 +6,19 @@ fn get_input() -> String {
     std::fs::read_to_string("input").unwrap()
 }
 
-fn part1() {
-    let input = get_input();
-
+fn get_sum(input: &str) -> i32 {
     let regex = Regex::new(r"mul\((\d*),(\d*)\)").unwrap();
-
-    let sum: i32 = regex
+    regex
         .captures_iter(&input)
         .map(|capture| capture.extract())
         .map(|(_, [fac1, fac2])| (fac1.parse::<i32>().unwrap(), fac2.parse::<i32>().unwrap()))
         .map(|(fac1, fac2)| fac1 * fac2)
-        .sum();
+        .sum()
+}
 
-    println!("{}", sum);
+fn part1() {
+    let input = get_input();
+    println!("{}", get_sum(&input));
 }
 
 fn part2() {
@@ -52,30 +52,10 @@ fn part2() {
             in_do_section = true;
         }
 
-        //if char == 'd' {
-        //    let next_7 = input.get(i..(i+7));
-        //    let next_4 = input.get(i..(i+4));
-        //    
-        //    if next_7 == Some("don't()") {
-        //        in_do_section = false;
-        //    }
-
-        //    if next_4 == Some("do()") {
-        //        in_do_section = true;
-        //    }
-        //}
         i += 1;
     }
 
-    let regex = Regex::new(r"mul\((\d*),(\d*)\)").unwrap();
-    let sum: i32 = regex
-        .captures_iter(&filtered_input)
-        .map(|capture| capture.extract())
-        .map(|(_, [fac1, fac2])| (fac1.parse::<i32>().unwrap(), fac2.parse::<i32>().unwrap()))
-        .map(|(fac1, fac2)| fac1 * fac2)
-        .sum();
-
-    println!("{}", sum);
+    println!("{}", get_sum(&filtered_input));
 
 }
 
