@@ -27,6 +27,7 @@ fn part2() {
     let mut in_do_section = true;
     let mut i = 0;
     let mut filtered_input = String::from("");
+    filtered_input.reserve(input.len());
     let mut prev_cache: VecDeque<char> = VecDeque::new();
     prev_cache.reserve(7);
 
@@ -56,7 +57,6 @@ fn part2() {
     }
 
     println!("{}", get_sum(&filtered_input));
-
 }
 
 fn main() {
