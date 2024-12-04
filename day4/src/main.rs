@@ -89,16 +89,10 @@ fn part2() {
                 continue;
             }
 
-            let left_up = rows[i - 1].chars().nth(j - 1);
-            let left_down = rows[i + 1].chars().nth(j - 1);
-            let right_up = rows[i - 1].chars().nth(j + 1);
-            let right_down = rows[i + 1].chars().nth(j + 1);
-
-            let (left_up, left_down, right_up, right_down) =
-                match (left_up, left_down, right_up, right_down) {
-                    (Some(a), Some(b), Some(c), Some(d)) => (a, b, c, d),
-                    _ => continue,
-                };
+            let left_up = rows[i - 1].chars().nth(j - 1).unwrap();
+            let left_down = rows[i + 1].chars().nth(j - 1).unwrap();
+            let right_up = rows[i - 1].chars().nth(j + 1).unwrap();
+            let right_down = rows[i + 1].chars().nth(j + 1).unwrap();
 
             let diag_a = (left_up, right_down);
             let diag_b = (left_down, right_up);
